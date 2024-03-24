@@ -16,6 +16,14 @@ router.route('/:id').put(verifyjwt,  upload.none(), updateVideo)
 router.route('/:id').delete(verifyjwt, isAdmin, deleteVideo )
 
 
+// Comment Management
+
+router.route('/:id/comments').get(verifyjwt, getCommentsByVideo)
+router.route('/:id/comments').post(verifyjwt, addComment)
+router.route('/:id/comments/:comment_id').put(verifyjwt, updateComment)
+router.route('/:id/comments/:comment_id').delete(verifyjwt, deleteComment)
+
+
 
 
 export default router
