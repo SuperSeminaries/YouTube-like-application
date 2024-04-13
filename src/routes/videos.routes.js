@@ -5,6 +5,7 @@ import { createVideo, deleteVideo, getTrendingVideos, getVideo, getVideoById, up
 import { isAdmin } from "../middlewares/isAdmin.middleware.js";
 import { addComment, deleteComment, getCommentsByVideo, updateComment } from "../controllers/comment.controllers.js";
 import { dislikesVideo, likeVideo } from "../controllers/like.controllers.js";
+import { getRepliesToComment, replyToComment } from "../controllers/commentReply.controllers.js";
 const router = Routes();
 
 
@@ -31,7 +32,15 @@ router.route('/:id/like').put(verifyjwt, likeVideo)
 router.route('/:id/dislike').put(verifyjwt, dislikesVideo)
 
 
+// Comments Replies:
 
+router.route('/:id/comments/:comment_id/replies').get(verifyjwt, getRepliesToComment)
+router.route('/:id/comments/:comment_id/replies').post(verifyjwt, replyToComment)
+
+
+// Trending Videos:
+
+router.route('/t/trending').get(verifyjwt, getTrendingVideos)
 
 
 
